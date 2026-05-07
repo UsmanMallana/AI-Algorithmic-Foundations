@@ -1,0 +1,77 @@
+hours_studied = [7,4,8,5,7,3,7,8,5,4,8,8,3,6,5,2,8,6,2,5]
+previous_scores = [99,82,51,52,75,78,73,45,77,89,91,79,47,47,79,72,73,83,54,75]
+sleep_hours = [9,4,7,5,8,9,5,4,8,4,4,6,9,4,7,4,8,7,4,7]
+sample_q_paper = [1,2,2,2,5,6,6,6,2,0,5,2,2,2,8,3,4,2,9,0]
+performance = [91,65,45,36,66,61,63,42,61,69,84,73,27,33,68,43,67,70,30,63]
+total_values = 0
+for i in hours_studied:
+    total_values += i
+average_hours_studied = 0
+average_hours_studied = total_values/len(hours_studied)
+total_values1 = 0
+for i in performance:
+    total_values1 += i
+average_performance = 0
+average_performance = total_values1/len(performance)
+upper_value = 0
+bottom_value = 0
+for i in range(len(hours_studied)):
+    upper_value += (hours_studied[i]-average_hours_studied)*(performance[i]-average_performance)
+    bottom_value += (hours_studied[i]-average_hours_studied)**2
+theta1 = 0
+theta1 = upper_value/bottom_value
+total_values2 = 0
+for i in previous_scores:
+    total_values2 += i
+average_previous_scores = 0
+average_previous_scores = total_values2/len(previous_scores)
+upper_value1 = 0
+bottom_value1 = 0
+for i in range(len(previous_scores)):
+    upper_value1 += (previous_scores[i]-average_previous_scores)*(performance[i]-average_performance)
+    bottom_value1 += (previous_scores[i]-average_previous_scores)**2
+theta2 = 0
+theta2 = upper_value1/bottom_value1
+total_values3 = 0
+for i in sleep_hours:
+    total_values3 += i
+average_sleep_hours = 0
+average_sleep_hours = total_values3/len(sleep_hours)
+upper_value2 = 0
+bottom_value2 = 0
+for i in range(len(sleep_hours)):
+    upper_value2 += (sleep_hours[i]-average_sleep_hours)*(performance[i]-average_performance)
+    bottom_value2 += (sleep_hours[i]-average_sleep_hours)**2
+theta3 = 0
+theta3 = upper_value2/bottom_value2
+total_values4 = 0
+for i in sample_q_paper:
+    total_values4 += i
+average_sample_q_paper = 0
+average_sample_q_paper = total_values4/len(sample_q_paper)
+upper_value3 = 0
+bottom_value3 = 0
+for i in range(len(sample_q_paper)):
+    upper_value3 += (sample_q_paper[i]-average_sample_q_paper)*(performance[i]-average_performance)
+    bottom_value3 += (sample_q_paper[i]-average_sample_q_paper)**2
+theta4 = 0
+theta4 = upper_value3/bottom_value3
+theta1_x1 = 0
+theta1_x1 = theta1*average_hours_studied
+theta2_x2 = 0
+theta2_x2 = theta2*average_previous_scores
+theta3_x3 = 0
+theta3_x3 = theta3*average_sleep_hours
+theta4_x4 = 0
+theta4_x4 = theta4*average_sample_q_paper
+theta0 = 0
+theta0 = average_performance - theta1_x1 - theta2_x2 - theta3_x3 - theta4_x4
+
+x1 = int(input("Enter number of hours studied for prediciton: "))
+x2 = int(input("Enter previous scores: "))
+x3 = int(input("Enter sleep hours: "))
+x4 = int(input("Enter number of question papers solved: "))
+
+prediction = 0
+prediction = theta0 + (theta1*x1) + (theta2*x2) + (theta3*x3) + (theta4*x4)
+print("Predicted value is: ",prediction)

@@ -1,0 +1,34 @@
+x = input("Enter all indenepent values seperated by spaces = ")
+list_of_independent = x.split(' ')
+average_x = 0
+independent = []
+for i in range(len(list_of_independent)):
+    average_x += float(list_of_independent[i])
+    independent.append(float(list_of_independent[i]))
+y = input("Enter all dependent values seperated by spaces = ")
+list_of_dependent = y.split(' ')
+average_y = 0
+dependent = []
+for i in range(len(list_of_dependent)):
+    average_y += float(list_of_dependent[i])
+    dependent.append(float(list_of_dependent[i]))
+average_x = average_x/len(independent)
+average_y = average_y/len(dependent)
+a = 0.0
+b = 0.0
+for i in range(len(list_of_independent)):
+    a += (independent[i]-average_x)*(dependent[i]-average_y)
+    b += (independent[i]-average_x)**2
+theta1 = a/b
+theta0 = average_y - (theta1*average_x)
+print("Model is ready for calculations!")
+while i!= 'q':
+    x = input("Enter independent value to predict OR save 's' the theta0 and theta1 values OR 'q' to quit = ")
+    if x == 'q':
+        break
+    if x == 's':
+        print(f'Y = {theta0} + {theta1} X')
+        break
+    x = float(x)
+    y = theta0+(theta1*x)
+    print("Predicted value is = ",y)
